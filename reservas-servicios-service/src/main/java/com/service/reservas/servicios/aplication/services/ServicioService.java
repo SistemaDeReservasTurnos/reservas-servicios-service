@@ -24,9 +24,6 @@ public class ServicioService implements IServicioService{
     @Override
     public ServicioResponse createServicio(ServicioRequest servicioRequest) {
 
-        if (servicioRepository.findDuplicateByName(servicioRequest.getName()).isPresent()) {
-            throw new DuplicateKeyException("Ya existe un servicio con ese nombre");
-        }
         return null;
     }
 
@@ -44,7 +41,7 @@ public class ServicioService implements IServicioService{
             //comparamos los id's de la peticion y de la base de datos (!= duplicado, == se puede editar)
             Servicio idFound = duplicated.get();
 
-            if (existsServicio.getId().equals(idFound.getId())) {
+            if (!existsServicio.getId().equals(idFound.getId())) {
                 throw new DuplicateKeyException("Ya existe un servicio con ese nombre");
             }
         }

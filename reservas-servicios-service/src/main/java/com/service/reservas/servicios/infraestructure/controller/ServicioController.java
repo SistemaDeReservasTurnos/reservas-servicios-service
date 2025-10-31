@@ -21,14 +21,14 @@ public class ServicioController {
     public ResponseEntity<?> editServicio(@PathVariable Long id, @RequestBody ServicioRequest servicioRequest) {
         try {
             ServicioResponse updatedServicio = servicioService.editServicio(id, servicioRequest);
-            return ResponseEntity.ok("Servicio editado correctamente");
+            return ResponseEntity.ok(updatedServicio); //devuelvo el servicio actulizado
 
         } catch (Exception ex){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
         }
     }
 
-    @GetMapping("/existence/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> existenceServiceById(@PathVariable Long id) {
         try {
             servicioService.existenceServiceByid(id);
