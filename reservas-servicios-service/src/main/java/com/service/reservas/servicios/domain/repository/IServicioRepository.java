@@ -1,11 +1,11 @@
 package com.service.reservas.servicios.domain.repository;
 
-import com.service.reservas.servicios.aplication.dto.ServicioRequest;
-import com.service.reservas.servicios.aplication.dto.ServicioResponse;
-import com.service.reservas.servicios.domain.entities.Servicio;
-import com.service.reservas.servicios.infraestructure.persistence.ServicioModel;
 
+import com.service.reservas.servicios.domain.entities.Servicio;
 import java.util.Optional;
+
+
+//repository solo debe saber de la entidad dominio (no de aplication)
 
 public interface IServicioRepository {
 

@@ -15,6 +15,15 @@ public class Servicio {
     private String description;
     private String duration;
     private Double price;
-    private LocalDateTime updateAt;
+    private LocalDateTime updatedAt;
     private String updatedBy;
+
+    public void updateInfoServ(String name, String description, String duration, Double price, LocalDateTime updatedAt, String updatedBy) {
+        this.name = name;
+        this.description = description;
+        this.duration = duration;
+        this.price = price;
+        this.updatedAt = updatedAt;
+        this.updatedBy = updatedBy;
+    }
 }

@@ -16,5 +16,6 @@ public class ServicioRequest {
     private String description;
     private String duration;
     private Double price;
+    private String updatedAt;
     private String updatedBy;
 }

@@ -18,6 +18,6 @@ public class ServicioResponse {
     private String description;
     private String duration;
     private Double price;
-    private LocalDateTime updateAt;
+    private LocalDateTime updatedAt;
     private String updatedBy;
 }

@@ -2,6 +2,8 @@ package com.service.reservas.servicios.infraestructure.persistence;
 
 import com.service.reservas.servicios.domain.entities.Servicio;
 
+import java.time.LocalDateTime;
+
 public class ServicioModelMapper {
 
     public static ServicioModel toModel(Servicio servicio) {
@@ -12,8 +14,8 @@ public class ServicioModelMapper {
         servicioModel.setDescription(servicio.getDescription());
         servicioModel.setDuration(servicio.getDuration());
         servicioModel.setPrice(servicio.getPrice());
-        servicioModel.setUpdatedAt(servicioModel.getUpdatedAt());
-        servicioModel.setUpdatedBy(servicioModel.getUpdatedBy());
+        servicioModel.setUpdatedAt(servicio.getUpdatedAt());
+        servicioModel.setUpdatedBy(servicio.getUpdatedBy());
 
         return servicioModel;
     }
@@ -26,7 +28,7 @@ public class ServicioModelMapper {
         servicio.setDescription(servicioModel.getDescription());
         servicio.setDuration(servicioModel.getDuration());
         servicio.setPrice(servicioModel.getPrice());
-        servicio.setUpdateAt(servicioModel.getUpdatedAt());
+        servicio.setUpdatedAt(servicioModel.getUpdatedAt());
         servicio.setUpdatedBy(servicioModel.getUpdatedBy());
 
         return servicio;

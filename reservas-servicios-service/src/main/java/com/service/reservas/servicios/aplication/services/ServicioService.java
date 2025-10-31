@@ -10,6 +10,7 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 public class ServicioService implements IServicioService{
@@ -35,20 +36,23 @@ public class ServicioService implements IServicioService{
 
         Servicio existsServicio = existenceServiceByid(id); // verificamos la existencia
 
-        // actualizamos los campos
-        if (servicioRepository.findDuplicateByName(servicioRequest.getName()).isPresent()) {
-            throw new DuplicateKeyException("Ya existe un servicio con ese nombre");
+        //verifico si no hay duplicados
+        // si el nombre esta en la bd = true
+        Optional<Servicio> duplicated = servicioRepository.findDuplicateByName(servicioRequest.getName());
+        if (duplicated.isPresent()) {
+
+            //comparamos los id's de la peticion y de la base de datos (!= duplicado, == se puede editar)
+            Servicio idFound = duplicated.get();
+
+            if (existsServicio.getId().equals(idFound.getId())) {
+                throw new DuplicateKeyException("Ya existe un servicio con ese nombre");
+            }
         }
 
-        existsServicio.setName(servicioRequest.getName());
-        existsServicio.setDescription(servicioRequest.getDescription());
-        existsServicio.setDuration(servicioRequest.getDuration());
-        existsServicio.setPrice(servicioRequest.getPrice());
-        existsServicio.setUpdateAt(LocalDateTime.now()); //Obtiene el tiempo
-        existsServicio.setUpdatedBy(servicioRequest.getUpdatedBy());
+        //actualizamos el servicio
+        existsServicio.updateInfoServ(servicioRequest.getName(), servicioRequest.getDescription(), servicioRequest.getDuration(), servicioRequest.getPrice(), LocalDateTime.now() , servicioRequest.getUpdatedBy());
 
         // llamamos al repositorio para pasarle/guardar el servicio actualizado
-
         Servicio updateServicio = servicioRepository.save(existsServicio);
 
         return ServicioMapper.toResponse(updateServicio);
@@ -58,7 +62,6 @@ public class ServicioService implements IServicioService{
     public Servicio existenceServiceByid(Long id) {
 
         //valido la existencia
-
         return servicioRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Servicio no encontrado"));
 
