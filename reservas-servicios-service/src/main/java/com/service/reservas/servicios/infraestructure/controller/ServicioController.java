@@ -37,4 +37,14 @@ public class ServicioController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
         }
     }
+
+    @GetMapping("/details/{id}")
+    public ResponseEntity<?> seeDetailServicio(@PathVariable Long id) {
+        try {
+            ServicioResponse servicio = servicioService.seeDetailServicio(id);
+            return ResponseEntity.ok(servicio);
+        } catch (Exception ex){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+        }
+    }
 }

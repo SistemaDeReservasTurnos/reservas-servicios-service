@@ -64,6 +64,15 @@ public class ServicioService implements IServicioService{
 
     }
 
+    @Override
+    public ServicioResponse seeDetailServicio(Long id) {
+
+        // buscar servicio por id
+        Servicio servicio = existenceServiceByid(id); //devuelve el servicio
+
+        return ServicioMapper.toResponse(servicio);
+    }
+
 
 }
 
