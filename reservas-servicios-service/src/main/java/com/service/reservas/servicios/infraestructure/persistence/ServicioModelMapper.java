@@ -14,8 +14,6 @@ public class ServicioModelMapper {
         servicioModel.setDescription(servicio.getDescription());
         servicioModel.setDuration(servicio.getDuration());
         servicioModel.setPrice(servicio.getPrice());
-        servicioModel.setUpdatedAt(servicio.getUpdatedAt());
-        servicioModel.setUpdatedBy(servicio.getUpdatedBy());
 
         return servicioModel;
     }
@@ -28,8 +26,6 @@ public class ServicioModelMapper {
         servicio.setDescription(servicioModel.getDescription());
         servicio.setDuration(servicioModel.getDuration());
         servicio.setPrice(servicioModel.getPrice());
-        servicio.setUpdatedAt(servicioModel.getUpdatedAt());
-        servicio.setUpdatedBy(servicioModel.getUpdatedBy());
 
         return servicio;
     }

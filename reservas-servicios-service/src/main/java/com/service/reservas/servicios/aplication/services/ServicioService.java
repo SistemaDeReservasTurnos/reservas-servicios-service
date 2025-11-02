@@ -47,7 +47,7 @@ public class ServicioService implements IServicioService{
         }
 
         //actualizamos el servicio
-        existsServicio.updateInfoServ(servicioRequest.getName(), servicioRequest.getDescription(), servicioRequest.getDuration(), servicioRequest.getPrice(), LocalDateTime.now() , servicioRequest.getUpdatedBy());
+        existsServicio.updateInfoServ(servicioRequest.getName(), servicioRequest.getDescription(), servicioRequest.getDuration(), servicioRequest.getPrice());
 
         // llamamos al repositorio para pasarle/guardar el servicio actualizado
         Servicio updateServicio = servicioRepository.save(existsServicio);

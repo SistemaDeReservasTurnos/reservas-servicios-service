@@ -18,12 +18,13 @@ public class Servicio {
     private LocalDateTime updatedAt;
     private String updatedBy;
 
-    public void updateInfoServ(String name, String description, String duration, Double price, LocalDateTime updatedAt, String updatedBy) {
+
+    //falta active
+
+    public void updateInfoServ(String name, String description, String duration, Double price) {
         this.name = name;
         this.description = description;
         this.duration = duration;
         this.price = price;
-        this.updatedAt = updatedAt;
-        this.updatedBy = updatedBy;
     }
 }

@@ -15,8 +15,6 @@ public class ServicioMapper {
         newServicio.setDescription(servicioRequest.getDescription());
         newServicio.setDuration(servicioRequest.getDuration());
         newServicio.setPrice(servicioRequest.getPrice());
-        newServicio.setUpdatedAt(LocalDateTime.parse(servicioRequest.getUpdatedAt()));
-        newServicio.setUpdatedBy(servicioRequest.getUpdatedBy());
 
         return newServicio;
 
@@ -32,8 +30,6 @@ public class ServicioMapper {
         servicioResponse.setDescription(servicio.getDescription());
         servicioResponse.setDuration(servicio.getDuration());
         servicioResponse.setPrice(servicio.getPrice());
-        servicioResponse.setUpdatedAt(servicio.getUpdatedAt());
-        servicioResponse.setUpdatedBy(servicio.getUpdatedBy());
 
         return servicioResponse;
 
