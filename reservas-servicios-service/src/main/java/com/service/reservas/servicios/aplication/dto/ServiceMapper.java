@@ -13,8 +13,6 @@ public class ServiceMapper {
         newService.setDescription(serviceRequest.getDescription());
         newService.setDuration(serviceRequest.getDuration());
         newService.setPrice(serviceRequest.getPrice());
-//        newService.setUpdatedAt(LocalDateTime.parse(servicioRequest.getUpdatedAt()));
-//        newService.setUpdatedBy(servicioRequest.getUpdatedBy());
 
         return newService;
 
