@@ -28,7 +28,7 @@ public class ServiceController {
     public ResponseEntity<?> editService(@PathVariable Long id, @RequestBody ServiceRequest serviceRequest) {
 
         ServiceResponse updatedService = servicioService.editService(id, serviceRequest);
-        return ResponseEntity.ok(updatedService); //devuelvo el servicio actulizado
+        return ResponseEntity.ok(updatedService); //devuelvo el servicio actualizado
     }
 
     @GetMapping("/{id}")
