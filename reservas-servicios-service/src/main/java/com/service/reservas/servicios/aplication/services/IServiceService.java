@@ -4,7 +4,7 @@ import com.service.reservas.servicios.aplication.dto.ServiceRequest;
 import com.service.reservas.servicios.aplication.dto.ServiceResponse;
 import com.service.reservas.servicios.domain.entities.Service;
 
-// Funciones de acuerdo a las peticiones del usario
+// Funciones de acuerdo a las peticiones del usuario
 
 public interface IServiceService {
 
