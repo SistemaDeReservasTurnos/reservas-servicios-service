@@ -1,5 +1,6 @@
 package com.service.reservas.servicios.aplication.dto;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,12 +11,13 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class ServicioRequest {
+public class ServiceResponse {
 
+    private Long id;
     private String name;
     private String description;
     private String duration;
     private Double price;
-    private String updatedAt;
+    private LocalDateTime updatedAt;
     private String updatedBy;
 }

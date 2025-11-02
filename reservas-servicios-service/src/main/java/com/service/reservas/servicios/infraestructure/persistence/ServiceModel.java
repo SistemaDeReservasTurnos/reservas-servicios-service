@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 
-public class ServicioModel {
+public class ServiceModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

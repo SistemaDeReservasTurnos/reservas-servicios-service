@@ -4,8 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface SpringRepositoryPersistence extends JpaRepository<ServicioModel, Long> {
+public interface SpringRepositoryPersistence extends JpaRepository<ServiceModel, Long> {
 
-    Optional<ServicioModel> findByName(String name);
+    boolean existsByName(String name);
+    Optional<ServiceModel> findByName(String name);
 
 }

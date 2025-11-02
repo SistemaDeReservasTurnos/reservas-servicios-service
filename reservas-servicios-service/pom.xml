@@ -8,7 +8,7 @@
 		<version>3.5.7</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.reservas-servicio-service</groupId>
+	<groupId>com.reservas-service-service</groupId>
 	<artifactId>reservas-servicios-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>reservas-servicios-service</name>
