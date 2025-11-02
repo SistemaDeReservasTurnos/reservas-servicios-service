@@ -25,7 +25,7 @@ public class ServiceController {
     }
 
     @PutMapping("/edit/{id}")
-    public ResponseEntity<?> editService(@PathVariable Long id, @RequestBody ServiceRequest serviceRequest) {
+    public ResponseEntity<ServiceResponse> editService(@PathVariable Long id, @RequestBody ServiceRequest serviceRequest) {
 
         ServiceResponse updatedService = servicioService.editService(id, serviceRequest);
         return ResponseEntity.ok(updatedService); //devuelvo el servicio actualizado
