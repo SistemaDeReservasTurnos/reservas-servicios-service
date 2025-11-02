@@ -16,6 +16,7 @@ public class ServicioModelMapper {
         servicioModel.setPrice(servicio.getPrice());
         servicioModel.setUpdatedAt(servicio.getUpdatedAt());
         servicioModel.setUpdatedBy(servicio.getUpdatedBy());
+        servicioModel.setActivo(servicio.getActivo());
 
         return servicioModel;
     }
@@ -30,6 +31,7 @@ public class ServicioModelMapper {
         servicio.setPrice(servicioModel.getPrice());
         servicio.setUpdatedAt(servicioModel.getUpdatedAt());
         servicio.setUpdatedBy(servicioModel.getUpdatedBy());
+        servicio.setActivo(servicioModel.getActivo());
 
         return servicio;
     }

@@ -34,4 +34,8 @@ public class ServicioModel {
 
     @Column(name = "updated_by")  //persona que editó el servicio
     private String updatedBy;
+
+
+    @Column(nullable = false)  // borrado lógico
+    private Boolean activo = true;
 }
