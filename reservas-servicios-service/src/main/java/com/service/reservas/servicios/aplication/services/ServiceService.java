@@ -84,13 +84,8 @@ public class ServiceService implements IServiceService {
         Service existsService = servicioRepository.findById(id)
                 .orElseThrow(() -> new ServiceNotFoundException(id));
 
-        /*boolean hasActiveReservations = reservationClient.checkActiveReservations(serviceId);
-
-        if (hasActiveReservations) {
-
-            throw new DataConflictException("The service cannot be deactivated because it has active or future reservations associated with it.");
-        }*/
-
+        // TODO: Before deactivating a service, check for active or future reservations using reservationClient.checkActiveReservations(id).
+        // Define and inject reservationClient, and handle DataConflictException if active reservations exist.
         existsService.setActive(false);
         existsService.setUpdatedAt(LocalDateTime.now());
         existsService.setUpdatedBy(AUDIT_USER_ID);
