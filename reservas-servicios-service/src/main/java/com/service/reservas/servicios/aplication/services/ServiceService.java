@@ -7,7 +7,6 @@ import com.service.reservas.servicios.domain.entities.Service;
 import com.service.reservas.servicios.infraestructure.exception.ServiceNotFoundException;
 import com.service.reservas.servicios.domain.repository.IServiceRepository;
 import org.springframework.dao.DuplicateKeyException;
-
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -62,7 +61,7 @@ public class ServiceService implements IServiceService {
             Service idFound = duplicated.get();
 
             if (!existsService.getId().equals(idFound.getId())) {
-                throw new DuplicateKeyException("Ya existe un servicio con ese nombre");
+                throw new DuplicateKeyException("There is already a service with that name.");
             }
         }
 
@@ -77,6 +76,25 @@ public class ServiceService implements IServiceService {
 
         Service updateService = servicioRepository.save(existsService);
         return ServiceMapper.toResponse(updateService);
+    }
+
+    @Override
+    public void deactivateService(Long id) {
+
+        Service existsService = servicioRepository.findById(id)
+                .orElseThrow(() -> new ServiceNotFoundException(id));
+
+        /*boolean hasActiveReservations = reservationClient.checkActiveReservations(serviceId);
+
+        if (hasActiveReservations) {
+
+            throw new DataConflictException("The service cannot be deactivated because it has active or future reservations associated with it.");
+        }*/
+
+        existsService.setActive(false);
+        existsService.setUpdatedAt(LocalDateTime.now());
+        existsService.setUpdatedBy(AUDIT_USER_ID);
+        servicioRepository.save(existsService);
     }
 
     @Override
