@@ -5,7 +5,14 @@ import com.service.reservas.servicios.aplication.dto.ServiceResponse;
 import com.service.reservas.servicios.aplication.services.ServiceService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
 @RequestMapping("/api/services")
@@ -18,14 +25,14 @@ public class ServiceController {
 
 
     @PostMapping("/create")
-    public ResponseEntity<ServiceResponse> createService(@RequestBody ServiceRequest request) {
+    public ResponseEntity<ServiceResponse> createService(@Valid @RequestBody ServiceRequest request) {
 
         ServiceResponse response = servicioService.createService(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @PutMapping("/edit/{id}")
-    public ResponseEntity<ServiceResponse> editService(@PathVariable Long id, @RequestBody ServiceRequest serviceRequest) {
+    public ResponseEntity<ServiceResponse> editService(@Valid @PathVariable Long id, @RequestBody ServiceRequest serviceRequest) {
 
         ServiceResponse updatedService = servicioService.editService(id, serviceRequest);
         return ResponseEntity.ok(updatedService); //devuelvo el servicio actualizado
