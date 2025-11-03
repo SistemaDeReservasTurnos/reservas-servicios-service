@@ -23,8 +23,16 @@ public class ServiceService implements IServiceService {
         this.servicioRepository = servicioRepository;
     }
 
+    private String normalizeServiceName(String name) {
+        name = name.trim();
+        return name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
+    }
+
     @Override
     public ServiceResponse createService(ServiceRequest serviceRequest) {
+
+        String normalized = normalizeServiceName(serviceRequest.getName());
+        serviceRequest.setName(normalized);
 
         if (servicioRepository.existsByName(serviceRequest.getName())){
             throw new DuplicateKeyException("A service with the name already exists: " + serviceRequest.getName());
@@ -44,6 +52,9 @@ public class ServiceService implements IServiceService {
 
     @Override
     public ServiceResponse editService(Long id, ServiceRequest serviceRequest) {
+
+        String normalized = normalizeServiceName(serviceRequest.getName());
+        serviceRequest.setName(normalized);
 
         Service existsService = findServiceByIdInternal(id);
         Optional<Service> duplicated = servicioRepository.findDuplicateByName(serviceRequest.getName());
