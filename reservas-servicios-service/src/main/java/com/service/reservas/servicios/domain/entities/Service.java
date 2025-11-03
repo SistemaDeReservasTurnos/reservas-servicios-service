@@ -24,5 +24,7 @@ public class Service {
         this.description = description;
         this.duration = duration;
         this.price = price;
+        this.updatedAt = updatedAt;
+        this.updatedBy = updatedBy;
     }
 }
