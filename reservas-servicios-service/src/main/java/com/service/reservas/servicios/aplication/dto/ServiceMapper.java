@@ -28,6 +28,7 @@ public class ServiceMapper {
         serviceResponse.setDescription(service.getDescription());
         serviceResponse.setDuration(service.getDuration());
         serviceResponse.setPrice(service.getPrice());
+        serviceResponse.setActive(service.getActive());
         serviceResponse.setUpdatedAt(service.getUpdatedAt());
         serviceResponse.setUpdatedBy(service.getUpdatedBy());
 

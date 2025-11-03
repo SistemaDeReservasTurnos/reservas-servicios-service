@@ -32,13 +32,14 @@ public class ServiceService implements IServiceService {
 
         Service newService = ServiceMapper.toDomain(serviceRequest);
 
+        newService.setActive(true);
         LocalDateTime now = LocalDateTime.now();
         newService.setUpdatedAt(now);
         newService.setUpdatedBy(AUDIT_USER_ID);
 
         Service savedService = servicioRepository.save(newService);
         return ServiceMapper.toResponse(savedService);
-    }
+}
 
 
     @Override

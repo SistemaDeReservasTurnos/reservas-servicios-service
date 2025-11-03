@@ -3,6 +3,7 @@ package com.service.reservas.servicios.infraestructure.persistence;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDateTime;
 
@@ -34,4 +35,7 @@ public class ServiceModel {
 
     @Column(name = "updated_by")  //persona que editó el servicio
     private String updatedBy;
+
+    @Column(name = "active", nullable = false)
+    private Boolean active = true;
 }

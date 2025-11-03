@@ -20,4 +20,5 @@ public class ServiceResponse {
     private Double price;
     private LocalDateTime updatedAt;
     private String updatedBy;
+    private Boolean active;
 }
