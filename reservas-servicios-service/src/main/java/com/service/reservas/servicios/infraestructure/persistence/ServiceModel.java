@@ -3,6 +3,7 @@ package com.service.reservas.servicios.infraestructure.persistence;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDateTime;
 
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 
-public class ServicioModel {
+public class ServiceModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,4 +35,7 @@ public class ServicioModel {
 
     @Column(name = "updated_by")  //persona que editó el servicio
     private String updatedBy;
+
+    @Column(name = "active", nullable = false)
+    private Boolean active = true;
 }

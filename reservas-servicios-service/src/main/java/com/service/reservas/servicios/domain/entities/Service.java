@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 
-public class Servicio {
+public class Service {
 
     private Long id;
     private String name;
@@ -17,6 +17,7 @@ public class Servicio {
     private Double price;
     private LocalDateTime updatedAt;
     private String updatedBy;
+    private Boolean active;
 
     public void updateInfoServ(String name, String description, String duration, Double price, LocalDateTime updatedAt, String updatedBy) {
         this.name = name;
