@@ -27,7 +27,7 @@ public class ServiceService implements IServiceService {
     public ServiceResponse createService(ServiceRequest serviceRequest) {
 
         if (servicioRepository.existsByName(serviceRequest.getName())){
-            throw new DuplicateKeyException("Ya existe un servicio con el nombre: " + serviceRequest.getName());
+            throw new DuplicateKeyException("A service with the name already exists: " + serviceRequest.getName());
         }
 
         Service newService = ServiceMapper.toDomain(serviceRequest);
