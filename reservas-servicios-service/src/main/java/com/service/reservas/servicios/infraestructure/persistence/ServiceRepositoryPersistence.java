@@ -5,6 +5,8 @@ import com.service.reservas.servicios.domain.repository.IServiceRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.List;
 
 @Component
 
@@ -36,6 +38,16 @@ public class ServiceRepositoryPersistence implements IServiceRepository {
     public Service save(Service service) {
         ServiceModel serviceModel = ServiceModelMapper.toModel(service);
         return ServiceModelMapper.toDomain(springServiceRepositoryPersistence.save(serviceModel));
+    }
+
+    @Override
+    public List<Service> getAllServicesActives(){
+
+        List<ServiceModel> serviceModel = springServiceRepositoryPersistence.findByActiveTrue();
+
+        return serviceModel.stream()
+                .map(ServiceModelMapper::toDomain)
+                .collect(Collectors.toList());
     }
 
 }

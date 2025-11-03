@@ -8,7 +8,9 @@ import com.service.reservas.servicios.infraestructure.exception.ServiceNotFoundE
 import com.service.reservas.servicios.domain.repository.IServiceRepository;
 import org.springframework.dao.DuplicateKeyException;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @org.springframework.stereotype.Service
 public class ServiceService implements IServiceService {
@@ -100,5 +102,13 @@ public class ServiceService implements IServiceService {
     private Service findServiceByIdInternal(Long id) {
         return servicioRepository.findById(id)
                 .orElseThrow(() -> new ServiceNotFoundException(id));
+    }
+
+    @Override
+    public List<ServiceResponse> getAllServices(){
+        List<Service> services = servicioRepository.getAllServicesActives();
+        return services.stream()
+                .map(ServiceMapper::toResponse)
+                .collect(Collectors.toList());
     }
 }
