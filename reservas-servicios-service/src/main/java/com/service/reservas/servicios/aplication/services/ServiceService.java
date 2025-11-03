@@ -6,6 +6,7 @@ import com.service.reservas.servicios.aplication.dto.ServiceResponse;
 import com.service.reservas.servicios.domain.entities.Service;
 import com.service.reservas.servicios.infraestructure.exception.ServiceNotFoundException;
 import com.service.reservas.servicios.domain.repository.IServiceRepository;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.dao.DuplicateKeyException;
 
 import java.time.LocalDateTime;
@@ -26,6 +27,9 @@ public class ServiceService implements IServiceService {
     @Override
     public ServiceResponse createService(ServiceRequest serviceRequest) {
 
+        String lowerCaseName = serviceRequest.getName().toLowerCase();
+        serviceRequest.setName(StringUtils.capitalize(lowerCaseName));
+
         if (servicioRepository.existsByName(serviceRequest.getName())){
             throw new DuplicateKeyException("A service with the name already exists: " + serviceRequest.getName());
         }
@@ -44,6 +48,9 @@ public class ServiceService implements IServiceService {
 
     @Override
     public ServiceResponse editService(Long id, ServiceRequest serviceRequest) {
+
+        String lowerCaseName = serviceRequest.getName().toLowerCase();
+        serviceRequest.setName(StringUtils.capitalize(lowerCaseName));
 
         Service existsService = findServiceByIdInternal(id);
         Optional<Service> duplicated = servicioRepository.findDuplicateByName(serviceRequest.getName());
