@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/services")
 
@@ -51,5 +53,11 @@ public class ServiceController {
 
         servicioService.deactivateService(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<List<ServiceResponse>> getAllServices() {
+        List<ServiceResponse> servicios = servicioService.getAllServices();
+        return  ResponseEntity.ok(servicios);
     }
 }
