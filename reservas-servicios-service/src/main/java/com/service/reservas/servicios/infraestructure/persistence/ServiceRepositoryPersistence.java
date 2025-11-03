@@ -10,32 +10,32 @@ import java.util.Optional;
 
 public class ServiceRepositoryPersistence implements IServiceRepository {
 
-    private final SpringRepositoryPersistence springServicioRepositoryPersistence;
+    private final SpringRepositoryPersistence springServiceRepositoryPersistence;
 
-    public ServiceRepositoryPersistence(SpringRepositoryPersistence springServicioRepositoryPersistence) {
-        this.springServicioRepositoryPersistence = springServicioRepositoryPersistence;
+    public ServiceRepositoryPersistence(SpringRepositoryPersistence springServiceRepositoryPersistence) {
+        this.springServiceRepositoryPersistence = springServiceRepositoryPersistence;
     }
 
     @Override
     public Optional<Service> findById(Long id) {
-        return springServicioRepositoryPersistence.findById(id).map(ServiceModelMapper::toDomain);
+        return springServiceRepositoryPersistence.findById(id).map(ServiceModelMapper::toDomain);
     }
 
     @Override
     public Optional<Service> findDuplicateByName(String name) {
-        return springServicioRepositoryPersistence.findByName(name).map(ServiceModelMapper::toDomain);
+        return springServiceRepositoryPersistence.findByName(name).map(ServiceModelMapper::toDomain);
 
     }
 
     @Override
     public boolean existsByName(String name) {
-        return springServicioRepositoryPersistence.existsByName(name);
+        return springServiceRepositoryPersistence.existsByName(name);
     }
 
     @Override
     public Service save(Service service) {
         ServiceModel serviceModel = ServiceModelMapper.toModel(service);
-        return ServiceModelMapper.toDomain(springServicioRepositoryPersistence.save(serviceModel));
+        return ServiceModelMapper.toDomain(springServiceRepositoryPersistence.save(serviceModel));
     }
 
 }
