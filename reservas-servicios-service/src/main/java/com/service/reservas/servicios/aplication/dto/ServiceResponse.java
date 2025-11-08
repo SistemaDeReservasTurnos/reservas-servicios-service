@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Data
 @AllArgsConstructor
@@ -16,7 +17,7 @@ public class ServiceResponse {
     private Long id;
     private String name;
     private String description;
-    private String duration;
+    private LocalTime duration;
     private Double price;
     private LocalDateTime updatedAt;
     private String updatedBy;
