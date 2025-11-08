@@ -31,6 +31,7 @@ public class ServiceController {
     public ResponseEntity<ServiceResponse> createService(@Valid @RequestBody ServiceRequest request) {
 
         ServiceResponse response = servicioService.createService(request);
+        System.out.println("Duración recibida: " + request.getDuration());
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 

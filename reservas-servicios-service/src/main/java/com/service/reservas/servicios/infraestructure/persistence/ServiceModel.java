@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "services")
@@ -24,8 +25,8 @@ public class ServiceModel {
     @Column(nullable = false, length = 500)
     private String description;
 
-    @Column(nullable = false, length = 50)
-    private String duration;
+    @Column(columnDefinition = "TIME")
+    private LocalTime duration;
 
     @Column(nullable = false, length = 50)
     private Double price;
