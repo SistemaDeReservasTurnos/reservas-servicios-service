@@ -6,6 +6,7 @@ import com.service.reservas.servicios.aplication.services.ServiceService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import jakarta.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,44 +20,43 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/services")
-
 public class ServiceController {
 
     private final ServiceService servicioService;
 
     public ServiceController(ServiceService serviceService) { this.servicioService = serviceService; }
 
-
     @PostMapping("/create")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMINISTRADOR', 'ROLE_EMPLEADO')")
     public ResponseEntity<ServiceResponse> createService(@Valid @RequestBody ServiceRequest request) {
-
         ServiceResponse response = servicioService.createService(request);
         System.out.println("Duración recibida: " + request.getDuration());
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @PutMapping("/edit/{id}")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMINISTRADOR', 'ROLE_EMPLEADO')")
     public ResponseEntity<ServiceResponse> editService(@PathVariable Long id, @Valid @RequestBody ServiceRequest serviceRequest) {
-
         ServiceResponse updatedService = servicioService.editService(id, serviceRequest);
         return ResponseEntity.ok(updatedService); //devuelvo el servicio actualizado
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<ServiceResponse> findServiceById(@PathVariable Long id) {
-
         ServiceResponse serviceResponse = servicioService.findServiceById(id);
         return  ResponseEntity.ok(serviceResponse);
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMINISTRADOR')")
     public ResponseEntity<Void> deactivateService(@PathVariable Long id) {
-
         servicioService.deactivateService(id);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/")
+    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<List<ServiceResponse>> getAllServices() {
         List<ServiceResponse> servicios = servicioService.getAllServices();
         return  ResponseEntity.ok(servicios);
