@@ -1,7 +1,8 @@
-# ============================
-# Build stage (Maven)
+
 
 FROM maven:3.9.6-eclipse-temurin-17 AS build
+
+#=========================================
 
 WORKDIR /app
 
@@ -12,7 +13,7 @@ RUN mvn -q -e -DskipTests dependency:go-offline
 # Copiamos el código fuente
 COPY src ./src
 
-# Compilamos y generamos el JAR
+# se compila y se genera el JAR
 RUN mvn clean package -DskipTests
 
 # ============================
@@ -29,7 +30,7 @@ COPY --from=build /app/target/*.jar app.jar
 ENV JAVA_OPTS=""
 ENV SPRING_PROFILES_ACTIVE=prod
 
-# Tu microservicio corre en el puerto 8082 (según application.properties)
+
 EXPOSE 8082
 
 ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]
