@@ -17,17 +17,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Cache de dependencias Maven
       - name: Cache Maven dependencies
         uses: actions/cache@v3
         with:
-          path: |
-            ~/.m2/repository
+          path: ~/.m2/repository
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-m2-
+          restore-keys: ${{ runner.os }}-m2-
 
-      # Instalar Java 17
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
@@ -35,16 +31,15 @@ jobs:
           java-version: '17'
           cache: maven
 
-      # Build del proyecto y tests
       - name: Build with Maven
+        working-directory: reservas-servicios-service
         run: mvn clean package --batch-mode
 
-      # Subir el artefacto JAR
       - name: Upload JAR artifact
         uses: actions/upload-artifact@v4
         with:
           name: reservas-servicios-service
-          path: target/*.jar
+          path: reservas-servicios-service/target/*.jar
 
 
   docker:
@@ -56,7 +51,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Login al Container Registry de GitHub
+      - name: Download JAR artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: reservas-servicios-service
+          path: reservas-servicios-service/target/
+
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3
         with:
@@ -64,15 +64,14 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # Construir imagen Docker
       - name: Build Docker Image
         run: |
-          docker build -t ghcr.io/${{ github.repository }}/reservas-servicios-service:latest .
+          docker build -t ghcr.io/${{ github.repository }}/reservas-servicios-service:latest reservas-servicios-service/
 
-      # Push de la imagen
       - name: Push Docker Image
         run: |
           docker push ghcr.io/${{ github.repository }}/reservas-servicios-service:latest
+
 
 
 
