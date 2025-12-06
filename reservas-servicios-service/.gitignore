@@ -1,36 +1,80 @@
-HELP.md
+# ============================
+# Java / Maven
+# ============================
 target/
-.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+.mvn/
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
-.idea
-*.iws
+# Eclipse / IntelliJ / VSCode configs
 *.iml
-*.ipr
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
+.idea/
 .vscode/
+*.class
 
+# Logs
+logs/
+*.log
+*.out
 
+# OS files
+.DS_Store
+Thumbs.db
+
+# ============================
+# Environment files
+# ============================
 .env
+.env.local
+.env.dev
+.env.prod
+.env.test
+
+# Pero sí mantener el .env.example
+!.env.example
+
+# ============================
+# Docker
+# ============================
+docker-compose.override.yml
+docker-compose.prod.yml
+docker-compose.staging.yml
+
+# Docker build artifacts
+**/docker-data/
+**/docker-volume/
+**/docker/
+
+# ============================
+# Spring Boot
+# ============================
+*.war
+*.jar
+*.tmp
+*.pid
+
+# ============================
+# GitHub Actions
+# ============================
+# No ignorar workflows, pero sí artefactos
+.github/workflows/*.bak
+.github/workflows/*.tmp
+
+# ============================
+# Node (por si tienes front)
+# ============================
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# ============================
+# IntelliJ extra
+# ============================
+out/
+*.ipr
+*.iws
+
+# Extra general
+*.swp
+*.swo
