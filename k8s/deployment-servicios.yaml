@@ -15,6 +15,7 @@ spec:
       labels:
         app: reservas-servicios-service
     spec:
+      serviceAccountName: servicios-permissions-ksa
       containers:
         - name: reservas-servicios-service
           # nombre local de la imagen -> servicios-service-local:latest (igual siempre )
